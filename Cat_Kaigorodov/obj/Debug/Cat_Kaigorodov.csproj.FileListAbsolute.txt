@@ -1,0 +1,7 @@
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Cat_Kaigorodov\bin\Debug\Cat_Kaigorodov.exe.config
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Cat_Kaigorodov\bin\Debug\Cat_Kaigorodov.exe
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Cat_Kaigorodov\bin\Debug\Cat_Kaigorodov.pdb
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Cat_Kaigorodov\obj\Debug\Cat_Kaigorodov.csproj.AssemblyReference.cache
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Cat_Kaigorodov\obj\Debug\Cat_Kaigorodov.csproj.CoreCompileInputs.cache
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Cat_Kaigorodov\obj\Debug\Cat_Kaigorodov.exe
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Cat_Kaigorodov\obj\Debug\Cat_Kaigorodov.pdb

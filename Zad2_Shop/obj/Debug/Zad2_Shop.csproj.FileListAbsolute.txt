@@ -1,0 +1,28 @@
+C:\Users\305-10\Desktop\Pr_21\Zad2_Shop\obj\Debug\Zad2_Shop.csproj.AssemblyReference.cache
+C:\Users\305-10\Desktop\Pr_21\Zad2_Shop\obj\Debug\MainWindow.baml
+C:\Users\305-10\Desktop\Pr_21\Zad2_Shop\obj\Debug\MainWindow.g.cs
+C:\Users\305-10\Desktop\Pr_21\Zad2_Shop\obj\Debug\App.g.cs
+C:\Users\305-10\Desktop\Pr_21\Zad2_Shop\obj\Debug\Zad2_Shop_MarkupCompile.cache
+C:\Users\305-10\Desktop\Pr_21\Zad2_Shop\obj\Debug\Zad2_Shop.g.resources
+C:\Users\305-10\Desktop\Pr_21\Zad2_Shop\obj\Debug\Zad2_Shop.Properties.Resources.resources
+C:\Users\305-10\Desktop\Pr_21\Zad2_Shop\obj\Debug\Zad2_Shop.csproj.GenerateResource.cache
+C:\Users\305-10\Desktop\Pr_21\Zad2_Shop\obj\Debug\Zad2_Shop.csproj.CoreCompileInputs.cache
+C:\Users\305-10\Desktop\Pr_21\Zad2_Shop\bin\Debug\Zad2_Shop.exe.config
+C:\Users\305-10\Desktop\Pr_21\Zad2_Shop\bin\Debug\Zad2_Shop.exe
+C:\Users\305-10\Desktop\Pr_21\Zad2_Shop\bin\Debug\Zad2_Shop.pdb
+C:\Users\305-10\Desktop\Pr_21\Zad2_Shop\obj\Debug\Zad2_Shop.exe
+C:\Users\305-10\Desktop\Pr_21\Zad2_Shop\obj\Debug\Zad2_Shop.pdb
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Zad2_Shop\bin\Debug\Zad2_Shop.exe.config
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Zad2_Shop\bin\Debug\Zad2_Shop.exe
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Zad2_Shop\bin\Debug\Zad2_Shop.pdb
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Zad2_Shop\obj\Debug\Zad2_Shop.csproj.AssemblyReference.cache
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Zad2_Shop\obj\Debug\MainWindow.baml
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Zad2_Shop\obj\Debug\MainWindow.g.cs
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Zad2_Shop\obj\Debug\App.g.cs
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Zad2_Shop\obj\Debug\Zad2_Shop_MarkupCompile.cache
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Zad2_Shop\obj\Debug\Zad2_Shop.g.resources
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Zad2_Shop\obj\Debug\Zad2_Shop.Properties.Resources.resources
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Zad2_Shop\obj\Debug\Zad2_Shop.csproj.GenerateResource.cache
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Zad2_Shop\obj\Debug\Zad2_Shop.csproj.CoreCompileInputs.cache
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Zad2_Shop\obj\Debug\Zad2_Shop.exe
+C:\Users\305-8\Desktop\Кайгородов ПР-21\Zad2_Shop\obj\Debug\Zad2_Shop.pdb
