@@ -1,0 +1,78 @@
+﻿<Window x:Class="Zad3_Playlist.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zad3_Playlist"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="450">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Меню -->
+        <Menu Grid.Row="0" Margin="0,0,0,10">
+            <MenuItem Header="Плейлист">
+                <MenuItem Header="Переход к началу" Click="Nach_Click"/>
+                <Separator/>
+                <MenuItem Header="Удалить композицию" Click="DelTrack_Click"/>
+                <MenuItem Header="Очистить плейлист" Click="Clear_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Форма добавления -->
+        <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Padding="10" Margin="0,0,0,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Автор:" Margin="5"/>
+                <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtAuthor" Margin="5"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Название:" Margin="5"/>
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtTitle" Margin="5"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Content="Файл:" Margin="5"/>
+                <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtFilename" Margin="5"/>
+
+                <Button Grid.Row="3" Grid.Column="1" Content="Добавить" Click="AddTrack_Click" Width="100" HorizontalAlignment="Left" Margin="5"/>
+            </Grid>
+        </Border>
+
+        <!-- Список композиций -->
+        <ListBox Grid.Row="2" x:Name="listTracks" Margin="0,0,0,10" SelectionChanged="LstTracks_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Author}" FontWeight="Bold"/>
+                        <TextBlock Text=" - " />
+                        <TextBlock Text="{Binding Title}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!-- Информация о текущей песне -->
+        <Border Grid.Row="3" BorderBrush="Gray" BorderThickness="1" Padding="5">
+            <StackPanel>
+                <TextBlock x:Name="txtCurrentSong" FontWeight="Bold" TextAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
+                    <Button Content="Предыдущая" Click="Back_Click" Width="100" Margin="5"/>
+                    <Button Content="Следующая " Click="Next_Click" Width="100" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
