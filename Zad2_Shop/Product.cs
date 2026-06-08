@@ -8,22 +8,25 @@ namespace Zad2_Shop
 {
     public class Product
     {
-        public decimal Price { get; set; }  // Цена товара
-        public string Name { get; set; }    // Наименование товара
+        private decimal price;
+        private string name;
 
-        
         // Конструктор товара
-        public Product(string name, decimal price)
+        public Product(string Name, decimal Price)
         {
-            Name = name;
-            Price = price;
+            name = Name;
+            price = Price;
         }
 
         
         // Возвращает информацию о товаре
+        
         public string GetInfo()
         {
-            return $"{Name} | {Price} руб.";
+            return $"Наименование: {name}; Цена: {price}";
         }
+
+        public decimal Price { get { return price; } set { price = value; } }
+        public string Name { get { return name; } set { name = value; } }
     }
 }

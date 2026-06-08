@@ -6,91 +6,71 @@
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0" Text="ПРОДУКТОВЫЙ МАГАЗИН" 
+                   FontSize="22" FontWeight="Bold" TextAlignment="Center" 
+                   Background="LightGray" Padding="10" Margin="0,0,0,10"/>
 
-        <!-- Меню на всю ширину -->
-        <Menu Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,10">
-            <MenuItem Header="Действия">
-                <MenuItem Header="Добавить товар" Click="MenuAdd_Click"/>
-                <MenuItem Header="Продать товар" Click="MenuSell_Click"/>
-                <Separator/>
-                <MenuItem Header="Выход" Click="MenuExit_Click"/>
-            </MenuItem>
-            <MenuItem Header="Статистика" Click="MenuItem_Click">
-                <MenuItem Header="Показать все товары" Click="MenuShowAll_Click"/>
-                <MenuItem Header="Статистика магазина" Click="MenuReport_Click"/>
-            </MenuItem>
-        </Menu>
-
-        <!-- Левая панель: Добавление товара -->
-        <GroupBox Header=" Добавить товар" Grid.Row="1" Grid.Column="0" Margin="0,0,10,10">
-            <StackPanel Margin="10">
-                <TextBlock Text="Название товара" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <TextBox x:Name="txtName" Margin="0,0,0,10" Padding="5" Tag="Название"/>
-
-                <TextBlock Text="Цена (₽)" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <TextBox x:Name="txtPrice" Margin="0,0,0,10" Padding="5" Tag="Цена"/>
-
-                <TextBlock Text="Количество (шт.)" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <TextBox x:Name="txtCount" Margin="0,0,0,15" Padding="5" Tag="Количество"/>
-
-                <Button x:Name="btnAdd" Content="Добавить в ассортимент" Click="BtnAdd_Click" 
-                        Background="#4CAF50" Foreground="White" FontWeight="Bold" 
-                        Padding="10" Cursor="Hand"/>
+        <!-- Создание товара -->
+        <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1" 
+                Padding="10" Margin="0,5" CornerRadius="5">
+            <StackPanel>
+                <TextBlock Text="Добавление товара" FontWeight="Bold" FontSize="14" Margin="0,0,0,5"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="txtName" Width="150" Margin="0,0,5,0" ToolTip="Наименование"/>
+                    <TextBox x:Name="txtPrice" Width="80" Margin="0,0,5,0" ToolTip="Цена"/>
+                    <TextBox x:Name="txtCount" Width="80" Margin="0,0,5,0" ToolTip="Количество"/>
+                    <Button x:Name="btnCreate" Content="Создать" Width="80" 
+                            Click="BtnCreate_Click" Background="LightGreen"/>
+                </StackPanel>
             </StackPanel>
-        </GroupBox>
+        </Border>
 
-        <!-- Правая панель: Продажа товара -->
-        <GroupBox Header=" Продать товар" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
-            <StackPanel Margin="10">
-                <TextBlock Text="Название товара" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <TextBox x:Name="txtSellName" Margin="0,0,0,10" Padding="5" Tag="Название"/>
-
-                <TextBlock Text="Количество для продажи (шт.)" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <TextBox x:Name="txtSellCount" Margin="0,0,0,15" Padding="5" Tag="Кол-во" Text="1"/>
-
-                <Button x:Name="btnSell" Content="Оформить продажу" Click="BtnSell_Click" 
-                        Background="#F44336" Foreground="White" FontWeight="Bold" 
-                        Padding="10" Cursor="Hand"/>
+        <!-- Продажа товара -->
+        <Border Grid.Row="2" BorderBrush="Gray" BorderThickness="1" 
+                Padding="10" Margin="0,5" CornerRadius="5">
+            <StackPanel>
+                <TextBlock Text="Продажа товара" FontWeight="Bold" FontSize="14" Margin="0,0,0,5"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="txtSellName" Width="150" Margin="0,0,5,0" ToolTip="Наименование"/>
+                    <TextBox x:Name="txtSellCount" Width="80" Margin="0,0,5,0" Text="1" ToolTip="Количество"/>
+                    <Button x:Name="btnSell" Content="Продать" Width="80" 
+                            Click="BtnSell_Click" Background="LightCoral"/>
+                </StackPanel>
             </StackPanel>
-        </GroupBox>
+        </Border>
 
-        <!-- Список товаров внизу -->
-        <GroupBox Header=" Товары в наличии" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,10,0,0">
+        <!-- Кнопки управления -->
+        <Border Grid.Row="3" BorderBrush="Gray" BorderThickness="1" 
+                Padding="10" Margin="0,5" CornerRadius="5">
+            <WrapPanel HorizontalAlignment="Center">
+                <Button x:Name="btnShowProfit" Content= "Показать прибыль" Width="700" 
+                        Click="BtnShowProfit_Click" Margin="0,0,0,5"/>
+                <Button x:Name="btnShowStats" Content="Статистика" Width="700" 
+                        Click="BtnShowStats_Click" Margin="0,0,0,5"/>
+            </WrapPanel>
+        </Border>
+
+        <!-- Список товаров -->
+        <Border Grid.Row="5" BorderBrush="Gray" BorderThickness="1" 
+                Padding="10" Margin="0,5" CornerRadius="5">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <!-- Панель с информацией -->
-                <Border Grid.Row="0" Background="#F5F5F5" Padding="5" Margin="0,0,0,5">
-                    <TextBlock Text="Список активных товаров (название — цена — количество)" 
-                               FontSize="11" FontStyle="Italic"/>
-                </Border>
+                <TextBlock Text="Текущий список товаров" FontWeight="Bold" FontSize="14" Margin="0,0,0,5"/>
 
-                <!-- Сам список -->
-                <ListBox x:Name="lbProducts" Grid.Row="1" Height="140" 
-                         FontFamily="Consolas" FontSize="13"/>
+                <ListBox x:Name="lstProducts" Grid.Row="1" Margin="0,5" MinHeight="200"/>
             </Grid>
-        </GroupBox>
-
-        <!-- Статусбар -->
-        <StatusBar Grid.Row="3" Grid.ColumnSpan="2" Margin="0,10,0,0">
-            <StatusBarItem>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Общая прибыль: " FontWeight="Bold"/>
-                    <TextBlock x:Name="tbProfit" FontWeight="Bold" Foreground="Green"/>
-                    <TextBlock Text=" ₽" FontWeight="Bold" Foreground="Green"/>
-                </StackPanel>
-            </StatusBarItem>
-        </StatusBar>
+        </Border>
     </Grid>
 </Window>

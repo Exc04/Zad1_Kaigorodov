@@ -17,109 +17,138 @@ namespace Zad2_Shop
 {
     public partial class MainWindow : Window
     {
-        private Shop shop;
+        private Shop pyaterochka;
 
         public MainWindow()
         {
             InitializeComponent();
-            shop = new Shop();
-            Update();
+
+            pyaterochka = new Shop();
+
+            // Тестовые товары
+            pyaterochka.CreateProduct("Кола", 85, 200);
+            pyaterochka.CreateProduct("Сок \"Добрый\"", 100, 50);
+            pyaterochka.CreateProduct("Хлеб", 45, 30);
+            pyaterochka.CreateProduct("Молоко", 79, 25);
+
+            UpdateProductList();
         }
 
-        
-        // Добавление товара
-        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        private void UpdateProductList()
         {
-            string name = txtName.Text;
-            if (!decimal.TryParse(txtPrice.Text, out decimal price))
-            {
-                MessageBox.Show("Неправильная цена!", "Ошибка");
-                return;
-            }
-            if (!int.TryParse(txtCount.Text, out int count) || count <= 0)
-            {
-                MessageBox.Show("Неправильное количество!", "Ошибка");
-                return;
-            }
+            lstProducts.Items.Clear();
 
-            if (shop.AddProduct(name, price, count))
+            var productsField = typeof(Shop).GetField("products",
+                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            var products = productsField?.GetValue(pyaterochka) as Dictionary<Product, int>;
+
+            if (products != null)
             {
-                MessageBox.Show($"Товар '{name}' добавлен!", "Успех");
-                ClearInputs();
-                Update();
-            }
-            else
-            {
-                MessageBox.Show("Ошибка добавления товара!", "Ошибка");
+                foreach (var product in products)
+                {
+                    lstProducts.Items.Add($"{product.Key.GetInfo()} | Количество: {product.Value} шт.");
+                }
             }
         }
 
-        
-        // Продажа товара
+
+        private void BtnCreate_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(txtName.Text))
+                {
+                    MessageBox.Show("Введите наименование товара!", "Ошибка",
+                                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                if (!decimal.TryParse(txtPrice.Text, out decimal price) || price <= 0)
+                {
+                    MessageBox.Show("Некорректные данные!", "Ошибка",
+                                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                if (!int.TryParse(txtCount.Text, out int count) || count <= 0)
+                {
+                    MessageBox.Show("Некорректные данные!", "Ошибка",
+                                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                pyaterochka.CreateProduct(txtName.Text, price, count);
+
+                txtName.Clear();
+                txtPrice.Clear();
+                txtCount.Clear();
+
+                UpdateProductList();
+
+                MessageBox.Show("Товар успешно добавлен!", "Успех",
+                                MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка",
+                                MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         private void BtnSell_Click(object sender, RoutedEventArgs e)
         {
-            string name = txtSellName.Text;
-            if (!int.TryParse(txtSellCount.Text, out int count) || count <= 0)
-                count = 1;
-
-            if (shop.SellProduct(name, count))
+            try
             {
-                MessageBox.Show($"Товар '{name}' продан!", "Успех");
-                txtSellName.Text = "";
+                if (string.IsNullOrWhiteSpace(txtSellName.Text))
+                {
+                    MessageBox.Show("Введите наименование товара!", "Ошибка",
+                                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                // Получаем количество для продажи
+                int count = 1;
+                if (!string.IsNullOrWhiteSpace(txtSellCount.Text))
+                {
+                    int.TryParse(txtSellCount.Text, out count);
+                    if (count <= 0) count = 1;
+                }
+
+                // Проверка наличия товара
+                if (!pyaterochka.Check(txtSellName.Text, count))
+                {
+                    MessageBox.Show($"Недостаточно товара {txtSellName.Text} в наличии!",
+                                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                // Продажа нескольких товаров 
+                pyaterochka.Sell(txtSellName.Text, count);
+
+                txtSellName.Clear();
                 txtSellCount.Text = "1";
-                Update();
+
+                UpdateProductList();
+
+                MessageBox.Show($"Успешно продано {count} шт. товара!", "Успех",
+                                MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Товар не найден или недостаточно!", "Ошибка");
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка",
+                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        
-        // Обновление интерфейса
-        private void Update()
+        private void BtnShowProfit_Click(object sender, RoutedEventArgs e)
         {
-            lbProducts.Items.Clear();
-            foreach (var item in shop.GetAllProducts())
-            {
-                lbProducts.Items.Add($"{item.Key.GetInfo()} | {item.Value} шт.");
-            }
-            tbProfit.Text = $"Прибыль: {shop.GetProfit()} руб.";
+            pyaterochka.GetProfit("Текущая прибыль магазина");
         }
 
-        
-        // Очистка полей ввода
-        private void ClearInputs()
+        private void BtnShowStats_Click(object sender, RoutedEventArgs e)
         {
-            txtName.Text = "";
-            txtPrice.Text = "";
-            txtCount.Text = "";
+            // Вызываем метод статистики
+            pyaterochka.GetStatistics();
         }
-
-       
-        // Показать все товары
-        private void ShowAllProducts()
-        {
-            if (shop.GetAllProducts().Count == 0)
-            {
-                MessageBox.Show("Товаров нет!", "Информация");
-                return;
-            }
-
-            string msg = " СПИСОК ТОВАРОВ \n\n";
-            foreach (var item in shop.GetAllProducts())
-            {
-                msg += $"{item.Key.GetInfo()} | {item.Value} шт.\n";
-            }
-            MessageBox.Show(msg, "Все товары");
-        }
-
-
-        // Обработчики меню
-        private void MenuAdd_Click(object sender, RoutedEventArgs e) => BtnAdd_Click(null, null);
-        private void MenuSell_Click(object sender, RoutedEventArgs e) => BtnSell_Click(null, null);
-        private void MenuShowAll_Click(object sender, RoutedEventArgs e) => ShowAllProducts();
-        private void MenuExit_Click(object sender, RoutedEventArgs e) => this.Close();
-
     }
 }
